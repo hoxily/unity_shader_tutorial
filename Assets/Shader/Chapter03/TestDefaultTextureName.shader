@@ -8,7 +8,7 @@ Shader "Chapter03/TestDefaultTextureName"
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" "PreviewType" = "Plane" }
 		LOD 100
 
 		Pass
