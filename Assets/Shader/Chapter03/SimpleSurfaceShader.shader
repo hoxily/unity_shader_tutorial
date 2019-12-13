@@ -17,7 +17,7 @@
         };
         fixed4 _Color;
         void surf (Input IN, inout SurfaceOutput o) {
-            o.Albedo = _Color;
+            o.Albedo = 1;
         }
         ENDCG
     }
