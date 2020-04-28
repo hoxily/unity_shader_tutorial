@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Chapter04
 {
+    using InputButton = UnityEngine.EventSystems.PointerEventData.InputButton;
+
     public class NosePositionAnalyse : MonoBehaviour
     {
         public Camera viewingCamera;
@@ -16,6 +18,12 @@ namespace Chapter04
             Vector4 viewingPos = LogViewPosition();
             LogCameraSettings();
             LogProjectionMatrix(viewingPos);
+            LogTips("点击屏幕上的红色小球的中心，可以得到屏幕空间坐标。");
+        }
+
+        private void LogTips(string message)
+        {
+            Debug.Log(message);
         }
 
         private void LogProjectionMatrix(Vector4 viewingPos)
@@ -94,6 +102,14 @@ namespace Chapter04
         private void Log(string tag, Vector4 position)
         {
             Debug.LogFormat("{0}: ({1},{2},{3},{4})", tag, position.x, position.y, position.z, position.w);
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown((int)InputButton.Left))
+            {
+                Debug.LogFormat("MouseButtonDown at ({0},{1})", Input.mousePosition.x, Input.mousePosition.y);
+            }
         }
     }
 }
