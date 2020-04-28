@@ -23,6 +23,26 @@ namespace Chapter04
             Debug.LogFormat("viewingCamera.projectionMatrix: {0}", viewingCamera.projectionMatrix);
             Vector4 clipPos = viewingCamera.projectionMatrix * viewingPos;
             Log("裁剪空间", clipPos);
+            CheckNeedClip(clipPos);
+        }
+
+        /// <summary>
+        /// 检查是否需要裁剪
+        /// </summary>
+        /// <param name="clipPos">转换到裁剪空间后的坐标</param>
+        private void CheckNeedClip(Vector4 clipPos)
+        {
+            float w = clipPos.w;
+            if (-w <= clipPos.x && clipPos.x <= w
+                && -w <= clipPos.y && clipPos.y <= w
+                && -w <= clipPos.z && clipPos.z <= w)
+            {
+                Debug.LogFormat("{0} 满足条件，无需裁剪。", clipPos);
+            }
+            else
+            {
+                Debug.LogFormat("{0} 不满足条件，需要裁剪。", clipPos);
+            }
         }
 
         private void LogCameraSettings()
