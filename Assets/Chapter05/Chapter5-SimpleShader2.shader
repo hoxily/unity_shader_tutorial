@@ -12,6 +12,9 @@ Shader "Chapter5/SimpleShader2"
             //使用#pragma fragment <name>来指定片元着色函数
             #pragma fragment frag
 
+            //对于顶点着色器，unity支持的语义有：POSITION, TANGENT, NORMAL, COLOR, TEXCOORD0, TEXCOORD1, TEXCOORD2, TEXCOORD3等。
+            //填充到POSITION,TANGENT,NORMAL等语义的数据的来源是使用该材质的Renderer组件提供的。通常是MeshRenderer。
+            //在每帧调用DrawCall时，MeshRenderer组件负责把模型数据发送给unity shader。
             struct appdata_t
             {
                 //POSITION语义告诉unity，用模型空间的顶点坐标填充vertex变量
