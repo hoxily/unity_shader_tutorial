@@ -8,6 +8,7 @@ Shader "Custom/ModelDataVisulizer"
         _TangentToggle("Tangent Toggle", Float) = 0
         _UvVisualizeType("UV Visualize Type", Float) = 0
         _Uv0Toggle("Uv0 Toggle", Float) = 0
+        _VertexColorToggle("Vertex Color Toggle", Float) = 0
     }
     SubShader
     {
@@ -28,6 +29,7 @@ Shader "Custom/ModelDataVisulizer"
             float _TangentToggle;
             float _UvVisualizeType;
             float _Uv0Toggle;
+            float _VertexColorToggle;
 
             fixed4 VisualizeNormalizedDirection(float3 dir)
             {
@@ -71,6 +73,10 @@ Shader "Custom/ModelDataVisulizer"
                 else if (_Uv0Toggle > 0)
                 {
                     o.color = VisualizeUv(v.texcoord);
+                }
+                else if (any(_VertexColorToggle))
+                {
+                    o.color = v.color;
                 }
                 else
                 {
